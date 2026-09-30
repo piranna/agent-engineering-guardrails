@@ -15,4 +15,4 @@ No CLI or Markdown preprocessor is required. Each rule file has a stable identif
 
 ## Status
 
-Draft 0.4. Rule identifiers should remain stable; wording and policy choices need review against real projects before a 1.0 release. The distribution file is a manually maintained snapshot of the baseline; update it whenever normative rules change.
+Draft 0.5. Rule identifiers should remain stable; wording and policy choices need review against real projects before a 1.0 release. The distribution file is a manually maintained snapshot of the baseline; update it whenever normative rules change.
