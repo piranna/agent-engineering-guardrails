@@ -1,6 +1,6 @@
-# Engineering Agent Guardrails baseline, draft 0.1
+# Engineering Agent Guardrails baseline, draft 0.2
 
-This is the self-contained snapshot of the four rule modules. Project-specific policy can add requirements using explicit prose and rule IDs.
+This is the self-contained snapshot of the five rule modules. Project-specific policy can add requirements using explicit prose and rule IDs.
 
 ## Testing
 
@@ -26,3 +26,9 @@ This is the self-contained snapshot of the four rule modules. Project-specific p
 - EAG-CHANGE-002: MUST describe conflicts between requirements, tests, and implementation. MUST NOT silently rewrite requirements or tests to match implementation.
 - EAG-CHANGE-003: MUST obtain the required human decision before crossing a declared approval boundary. SHOULD continue independent work meanwhile.
 - EAG-CHANGE-004: MUST stop before an irreversible recovery action with multiple plausible targets when evidence cannot select one. Automated recovery SHOULD leave a recoverable state on failure.
+
+## Agent work-cycle efficiency
+
+- EAG-CYCLE-001: During investigation, SHOULD record related non-blocking hardening findings for the next implementation cycle. When a blocking change needs implementation, SHOULD batch those findings only if contracts are sufficiently specified, they affect the same subsystem or validation boundary, batching avoids repeated engineering or human coordination cycles, and critical-path risk does not materially increase. MUST NOT batch speculative or unresolved ideas. MUST keep distinct changes identifiable, update relevant implementation, regression tests, documentation, normative specification and traceability together, respect approval boundaries, and disclose material scope expansion under EAG-CHANGE-001. SHOULD optimize for human attention and total cycle cost.
+- EAG-CYCLE-002: Before delegating substantial implementation, investigation or validation to another agent, SHOULD give a wall-clock range: short (under 15 minutes), medium (15–45 minutes), or long (over 45 minutes). For long or variable work, SHOULD identify uncertainty and separate implementation from full-suite or quality-gate time where useful. Estimates are planning aids, not deadlines; SHOULD calibrate them with comparable observed durations. MUST state when no useful numerical range can be supported rather than invent precision.
+- EAG-CYCLE-003: During long delegated work, SHOULD revise remaining-time estimates at meaningful phase or uncertainty changes, stating completed phase, remaining work, supportable range, and confidence when material. MUST NOT issue periodic or unchanged estimates merely because time passed or interrupt productive work solely for an ETA. SHOULD report changed facts without an invented ETA when no useful estimate is available.

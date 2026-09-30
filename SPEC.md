@@ -1,4 +1,4 @@
-# Engineering Agent Guardrails, draft 0.1
+# Engineering Agent Guardrails, draft 0.2
 
 ## Scope
 
@@ -12,7 +12,7 @@ These rules govern how a coding agent changes and validates a software project. 
 
 A project MUST list the rule files it adopts, or include their full text in its agent instructions. A rule applies only when its text is available to the agent in the current workspace or has been explicitly retrieved. A URL alone is a pointer, not a reliable import mechanism.
 
-Each `rules/*.md` file is independently adoptable. The baseline distribution adopts all four rule files. Projects MAY adopt a subset by listing paths and MUST state any local additions in plain language. A profile is an example of local additions, not a hidden parameter format.
+Each `rules/*.md` file is independently adoptable. The baseline distribution adopts all five rule files. Projects MAY adopt a subset by listing paths and MUST state any local additions in plain language. A profile is an example of local additions, not a hidden parameter format.
 
 If instructions conflict, follow the applicable higher-priority user and platform instructions. For conflicts within the adopted project material, the project's explicit local override controls the general rule only where it identifies the rule and the intended exception. If conflict or scope remains unclear, surface it before taking a consequential action.
 

@@ -6,6 +6,7 @@ Read and follow these local files before editing code:
 - `docs/guardrails/rules/debugging.md`
 - `docs/guardrails/rules/evidence.md`
 - `docs/guardrails/rules/change-safety.md`
+- `docs/guardrails/rules/work-cycle.md`
 
 These paths assume that the adopted files have been copied into `docs/guardrails/` in this repository. A reference to a remote URL alone does not import its contents.
 
