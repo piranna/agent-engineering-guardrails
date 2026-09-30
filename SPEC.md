@@ -1,4 +1,4 @@
-# Engineering Agent Guardrails, draft 0.5
+# Engineering Agent Guardrails, draft 0.6
 
 ## Scope
 

@@ -1,6 +1,10 @@
 # Testing rules
 
-Status: draft 0.5. Adopt independently by referencing `rules/testing.md` in the project instructions.
+Status: draft 0.6. Adopt independently by referencing `rules/testing.md` in the project instructions.
+
+## EAG-TEST-000: Read applicable agent instructions first
+
+Before implementing a change, an agent MUST read the applicable `AGENTS.md` files and the local rule files they explicitly adopt, when those files are available. It MUST identify the repository's relevant validation workflow before choosing tests. If an expected instruction file is unavailable, it MUST say so rather than assume its contents.
 
 ## EAG-TEST-001: Explain existing test failures
 
@@ -26,4 +30,8 @@ After a failed or incomplete full validation, an agent MUST NOT rerun it immedia
 
 ## EAG-TEST-006: Do not iterate using the complete pytest suite
 
-In projects that use pytest, an agent MUST NOT use the complete pytest suite as its iterative development loop. After a full-suite run exposes an issue, it MUST return to focused tests until the known issues, implementation work, and code review are complete. It SHOULD then run the complete suite as part of the applicable canonical validation. This rule does not prohibit a full-suite run explicitly needed for diagnosis under EAG-TEST-005.
+In projects that use pytest, an agent MUST run only tests related to the changed behavior during iteration. It MUST NOT use the complete pytest suite as a discovery, debugging, or iterative development loop. After a full-suite run exposes an issue, it MUST return to focused tests until the known issues, implementation work, and code review are complete. It SHOULD then run the complete suite through the applicable pre-push or final canonical validation, if that workflow requires it. An explicit user request or a diagnostic need that focused checks cannot resolve MAY justify an earlier full-suite run. The agent MUST NOT skip any separately required gate.
+
+## EAG-TEST-007: Match validation to nonbehavioral changes
+
+A change limited to documentation, formatting, comments, or static metadata does not by itself justify running the complete test suite. An agent SHOULD run only checks affected by that change, after verifying that it cannot affect generated artifacts, runtime behavior, test discovery, packaging, or another required gate. If such an effect is plausible, the agent MUST validate the affected behavior or gate. An explicit project or user requirement for full validation still applies.

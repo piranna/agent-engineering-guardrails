@@ -1,15 +1,18 @@
-# Engineering Agent Guardrails baseline, draft 0.5
+# Engineering Agent Guardrails baseline, draft 0.6
 
 This is the self-contained snapshot of the five rule modules. Project-specific policy can add requirements using explicit prose and rule IDs.
 
 ## Testing
+
+- EAG-TEST-000: Before implementation, MUST read applicable `AGENTS.md` files and locally adopted rules when available, and identify the relevant repository validation workflow. MUST report an expected instruction file that is unavailable rather than assume its contents.
 
 - EAG-TEST-001: MUST NOT alter or delete an existing test merely to make an implementation pass. If it appears incorrect, identify the conflict among test, requirements, and observed behavior first. Follow any project approval requirement.
 - EAG-TEST-002: MUST NOT reduce an existing coverage threshold, disable a test, suppress a diagnostic, or weaken another configured gate to make a change pass. Make requested gate changes explicit and justified.
 - EAG-TEST-003: SHOULD first run the smallest meaningful check, then applicable project gates. MUST report checks run, outcomes, and required checks unable to run.
 - EAG-TEST-004: If the repository's pre-commit workflow is documented or verified to run canonical gates, SHOULD run only focused tests/checks during iteration. MUST NOT manually duplicate the full suite merely to rerun those same gates through pre-commit. SHOULD run canonical pre-commit validation once when ready and report its observed result. A later behavior-affecting change invalidates the result for changed code; MUST complete applicable canonical validation again before claiming validation, following EAG-TEST-005 for timing. Full-suite reruns MAY be used for diagnosis. Formatting-only or equivalent mechanical changes require only affected checks if they cannot invalidate other gates. MUST run required gates absent from pre-commit separately and MUST NOT assume coverage from the workflow name.
 - EAG-TEST-005: After failed or incomplete full validation, MUST NOT rerun it after each fix. MUST return to focused checks, review all known failures and affected call sites, and finish related implementation and code review before another full run. SHOULD rerun when implementation is believed final. A behavior-affecting edit invalidates the prior result for changed code but does not alone justify an immediate full rerun. MAY run full validation earlier when explicitly needed for diagnosis beyond focused checks.
-- EAG-TEST-006: In pytest projects, MUST NOT use the complete pytest suite as an iterative development loop. After a full-suite issue, MUST use focused tests until known issues, implementation work, and code review are complete. SHOULD then run the suite as part of canonical validation. An explicitly necessary diagnostic run under EAG-TEST-005 remains permitted.
+- EAG-TEST-006: In pytest projects, MUST run only tests related to changed behavior during iteration. MUST NOT use the complete suite as a discovery, debugging, or iterative development loop. After a full-suite issue, MUST use focused tests until known issues, implementation work, and code review are complete. SHOULD then run the suite through applicable pre-push or final canonical validation if required. An explicit user request or diagnostic need beyond focused checks MAY justify an earlier run. MUST NOT skip separately required gates.
+- EAG-TEST-007: Documentation, formatting, comments, or static metadata alone do not justify the complete suite. SHOULD run affected checks after verifying there is no impact on generated artifacts, runtime behavior, test discovery, packaging, or another required gate. MUST validate any plausible affected behavior or gate. Explicit project or user full-validation requirements still apply.
 
 ## Debugging
 
