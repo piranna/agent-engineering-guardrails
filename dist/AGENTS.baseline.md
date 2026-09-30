@@ -1,4 +1,4 @@
-# Engineering Agent Guardrails baseline, draft 0.3
+# Engineering Agent Guardrails baseline, draft 0.4
 
 This is the self-contained snapshot of the five rule modules. Project-specific policy can add requirements using explicit prose and rule IDs.
 
@@ -7,6 +7,7 @@ This is the self-contained snapshot of the five rule modules. Project-specific p
 - EAG-TEST-001: MUST NOT alter or delete an existing test merely to make an implementation pass. If it appears incorrect, identify the conflict among test, requirements, and observed behavior first. Follow any project approval requirement.
 - EAG-TEST-002: MUST NOT reduce an existing coverage threshold, disable a test, suppress a diagnostic, or weaken another configured gate to make a change pass. Make requested gate changes explicit and justified.
 - EAG-TEST-003: SHOULD first run the smallest meaningful check, then applicable project gates. MUST report checks run, outcomes, and required checks unable to run.
+- EAG-TEST-004: If the repository's pre-commit workflow is documented or verified to run canonical gates, SHOULD run only focused tests/checks during iteration. MUST NOT manually duplicate the full suite merely to rerun those same gates through pre-commit. SHOULD run canonical pre-commit validation once when ready and report its observed result. Afterward, a behavior-affecting change MUST be followed by applicable canonical validation before claiming validation; full-suite reruns MAY be used for diagnosis. Formatting-only or equivalent mechanical changes require only affected checks if they cannot invalidate other gates. MUST run required gates absent from pre-commit separately and MUST NOT assume coverage from the workflow name.
 
 ## Debugging
 
