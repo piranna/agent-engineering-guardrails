@@ -1,6 +1,6 @@
 # Change safety rules
 
-Status: draft 0.7. Adopt independently by referencing `rules/change-safety.md` in the project instructions.
+Status: draft 0.8. Adopt independently by referencing `rules/change-safety.md` in the project instructions.
 
 ## EAG-CHANGE-001: Keep scope explicit
 
@@ -25,3 +25,9 @@ When an agent discovers a defect, inconsistency, missing validation, duplication
 If the finding cannot invalidate the current operation, the agent SHOULD record enough evidence and scope to make it independently actionable, then continue the delivery objective unless instructed otherwise. It SHOULD use existing specifications, regression tests, audit findings, and durable operation records to establish that the risk is bounded. Known, bounded, documented debt is not by itself a release blocker.
 
 The agent MUST NOT broaden the critical path for incidental cleanup that does not reduce a concrete risk to the current operation. Delivery priority MUST NOT be used to bypass an invariant, ignore evidence of an unsafe operation, or weaken a validation gate. Batching under EAG-CYCLE-001 remains optional only within these safety and scope limits.
+
+## EAG-CHANGE-006: Bound agent fallback in automation
+
+When deterministic automation cannot resolve a failure, an agent MAY inspect the failure and propose a remedy without changing state. Autonomous modification as a fallback MUST have explicit, scoped authorization that identifies the permitted target and action; a general mandate to investigate or propose a solution does not grant it. The agent MUST respect any stricter approval or safety boundary that applies to the action.
+
+If the analysis reveals a mechanical, reproducible, and verifiable pattern, the agent SHOULD propose encoding that pattern as deterministic behavior for future runs instead of depending indefinitely on agent judgment. The proposal MUST distinguish the observed pattern from an unverified hypothesis and specify how the deterministic behavior would be checked.

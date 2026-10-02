@@ -1,4 +1,4 @@
-# Engineering Agent Guardrails baseline, draft 0.7
+# Engineering Agent Guardrails baseline, draft 0.8
 
 This is the self-contained snapshot of the five rule modules. Project-specific policy can add requirements using explicit prose and rule IDs.
 
@@ -33,6 +33,8 @@ This is the self-contained snapshot of the five rule modules. Project-specific p
 - EAG-CHANGE-003: MUST obtain the required human decision before crossing a declared approval boundary. SHOULD continue independent work meanwhile.
 - EAG-CHANGE-004: MUST stop before an irreversible recovery action with multiple plausible targets when evidence cannot select one. Automated recovery SHOULD leave a recoverable state on failure.
 - EAG-CHANGE-005: On discovering debt or a defect, MUST determine whether it could invalidate the current operation, evidence, or safety. If so, MUST address it in the current task and respect safety boundaries; MUST NOT defer unknown or unbounded risk merely to continue. Otherwise SHOULD document evidence and scope for independent action, using existing specifications, tests, audit findings, and durable records to bound risk, then continue delivery. Bounded documented debt alone does not block release. MUST NOT expand the critical path for incidental cleanup without a concrete current risk, or use delivery priority to bypass invariants, unsafe evidence, or validation gates. EAG-CYCLE-001 batching is subject to these limits.
+
+- EAG-CHANGE-006: When deterministic automation cannot resolve a failure, MAY inspect it and propose a remedy without changing state. Autonomous modification as a fallback MUST have explicit, scoped authorization identifying the permitted target and action; investigation or proposal alone does not authorize modification. MUST respect stricter approval and safety boundaries. If analysis finds a mechanical, reproducible, verifiable pattern, SHOULD propose encoding it as deterministic behavior for future runs, distinguishing evidence from hypothesis and specifying verification.
 
 ## Agent work-cycle efficiency
 
